@@ -5,32 +5,56 @@
 @tailwind utilities;
 
 @layer components {
-  /* Filter Section Styles */
-  .mi-filter-section {
-    @apply bg-natural-200 rounded-lg p-6 border border-base-100;
+  /* Layout Components */
+  .mi-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  .mi-filter-group {
-    @apply space-y-3;
+  .mi-section {
+    @apply py-16;
   }
 
-  .mi-filter-title {
-    @apply text-natural-700 font-semibold;
+  /* Hero Section */
+  .mi-hero {
+    @apply relative h-[500px] flex items-center justify-center;
   }
 
-  .mi-filter-options {
-    @apply flex flex-wrap gap-3;
+  .mi-hero-overlay {
+    @apply absolute inset-0 bg-black/40;
   }
 
-  .mi-filter-label {
-    @apply inline-flex items-center;
+  .mi-hero-content {
+    @apply relative text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  .mi-filter-text {
-    @apply ml-2 text-natural-600;
+  /* Card Components */
+  .mi-card {
+    @apply bg-white rounded-lg shadow-sm overflow-hidden
+           hover:shadow-md transition-all duration-150
+           hover:-translate-y-1;
   }
 
-  /* Button Styles */
+  .mi-card-image {
+    @apply aspect-w-16 aspect-h-9 w-full h-48 object-cover;
+  }
+
+  .mi-card-content {
+    @apply p-6;
+  }
+
+  .mi-card-title {
+    @apply font-semibold text-lg mb-2;
+  }
+
+  .mi-card-subtitle {
+    @apply text-sm bg-natural-100 text-natural-600 px-2 py-1 rounded;
+  }
+
+  .mi-card-features {
+    @apply grid grid-cols-2 gap-2 text-sm text-natural-600;
+  }
+
+  /* Button Components */
   .mi-button-primary {
     @apply bg-primary-600 text-white py-3 px-6 rounded-lg font-semibold
            hover:bg-primary-700 transform hover:-translate-y-0.5 transition-all
@@ -43,10 +67,47 @@
            hover:shadow-md;
   }
 
-  .mi-button-natural {
-    @apply bg-natural-200 text-base-800 py-2 px-4 rounded-md font-semibold
-           hover:bg-natural-200 transform hover:-translate-y-0.5 transition-all
-           hover:shadow-md;
+  /* Filter Components */
+  .mi-filter-section {
+    @apply bg-natural-100 rounded-lg p-6 sticky top-6;
+  }
+
+  .mi-filter-group {
+    @apply space-y-4;
+  }
+
+  .mi-filter-label {
+    @apply block text-sm font-medium text-natural-700;
+  }
+
+  .mi-filter-option {
+    @apply flex items-center space-x-2 text-natural-600;
+  }
+
+  /* Steps Components */
+  .mi-steps {
+    @apply space-y-4;
+  }
+
+  .mi-step {
+    @apply bg-white rounded-lg p-6 flex items-start gap-4
+           hover:shadow-md transition-all duration-150;
+  }
+
+  .mi-step-icon {
+    @apply text-2xl flex-shrink-0;
+  }
+
+  .mi-step-content {
+    @apply flex-grow;
+  }
+
+  .mi-step-title {
+    @apply font-semibold mb-1;
+  }
+
+  .mi-step-description {
+    @apply text-sm text-natural-600;
   }
 
   .mi-button-outline-natural {
@@ -198,6 +259,38 @@
     @apply relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8;
   }
 
+  /* Hero Section */
+  .mi-hero-section {
+    @apply relative bg-natural-50 py-16;
+  }
+
+  /* Bento Steps */
+  .mi-bento-steps {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-8;
+  }
+
+  .mi-bento-step {
+    @apply bg-white p-6 rounded-xl border border-base-100 text-center
+           transform hover:-translate-y-1 transition-all duration-150
+           hover:shadow-md;
+  }
+
+  /* Villa Cards */
+  .mi-bento-card {
+    @apply bg-white rounded-lg shadow-sm overflow-hidden
+           hover:shadow-md transition-all duration-150
+           hover:-translate-y-1;
+  }
+
+  .mi-card-subtitle {
+    @apply text-sm bg-natural-100 text-natural-600 px-2 py-1 rounded;
+  }
+
+  .mi-card-features {
+    @apply grid grid-cols-2 gap-2 text-sm text-natural-600;
+  }
+
+  /* Navigation */
   .nav-dropdown-item {
     @apply -m-3 p-3 flex items-start rounded-lg hover:bg-gray-50;
   }

@@ -13,4 +13,6 @@ Route::middleware('auth:owner')->group(function () {
     Route::post('/logout', [OwnerAuthController::class, 'logout'])->name('owner.logout');
     Route::get('/dashboard', [OwnerDashboardController::class, 'dashboard'])->name('owner.dashboard');
     Route::get('/committee/{slug}', [OwnerDashboardController::class, 'showCommittee'])->name('owner.committee');
+    Route::get('/projects', [OwnerDashboardController::class, 'projects'])->name('owner.projects');
+    Route::get('/project/{id}', [OwnerDashboardController::class, 'showProject'])->name('owner.project');
 });

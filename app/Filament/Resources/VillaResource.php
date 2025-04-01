@@ -54,41 +54,63 @@ class VillaResource extends Resource
                             
                         Forms\Components\Tabs\Tab::make('Details')
                             ->schema([
+                                Forms\Components\Select::make('bedrooms')
+                                    ->required()
+                                    ->options([
+                                        1 => '1 Bedroom',
+                                        2 => '2 Bedrooms',
+                                        3 => '3 Bedrooms',
+                                    ])
+                                    ->reactive(),
+
                                 Forms\Components\Select::make('floorplan_type')
                                     ->required()
-                                    ->options([
-                                        'studio' => 'Studio',
-                                        '1br' => '1 Bedroom',
-                                        '2br' => '2 Bedroom',
-                                        '3br' => '3 Bedroom',
-                                        'penthouse' => 'Penthouse',
-                                    ]),
-                                Forms\Components\Select::make('view_type')
+                                    ->options(function (callable $get) {
+                                        $bedrooms = $get('bedrooms');
+                                        $options = [
+                                            1 => [
+                                                '1.1' => 'Floorplan 1.1',
+                                                '1.2' => 'Floorplan 1.2',
+                                            ],
+                                            2 => [
+                                                '2.1' => 'Floorplan 2.1',
+                                                '2.2' => 'Floorplan 2.2',
+                                                '2.3' => 'Floorplan 2.3',
+                                            ],
+                                            3 => [
+                                                '3.1' => 'Floorplan 3.1',
+                                                '3.2' => 'Floorplan 3.2',
+                                            ],
+                                        ];
+                                        return $bedrooms ? ($options[$bedrooms] ?? []) : [];
+                                    })
+                                    ->visible(fn (callable $get) => filled($get('bedrooms'))),
+
+                                Forms\Components\Select::make('bathrooms')
                                     ->required()
                                     ->options([
-                                        'ocean' => 'Ocean View',
-                                        'pool' => 'Pool View',
-                                        'garden' => 'Garden View',
-                                        'city' => 'City View',
+                                        1 => '1 Bathroom',
+                                        2 => '2 Bathrooms',
+                                        3 => '3 Bathrooms',
                                     ]),
-                                Forms\Components\TextInput::make('floor_level')
+
+                                Forms\Components\Select::make('floor_level')
                                     ->required()
-                                    ->numeric()
-                                    ->minValue(1),
-                                Forms\Components\TextInput::make('stories')
+                                    ->options([
+                                        1 => '1st Floor',
+                                        2 => '2nd Floor',
+                                        3 => '3rd Floor',
+                                        4 => '4th Floor',
+                                    ]),
+
+                                Forms\Components\Select::make('stories')
                                     ->required()
-                                    ->numeric()
-                                    ->default(1)
-                                    ->minValue(1),
-                                Forms\Components\TextInput::make('bedrooms')
-                                    ->required()
-                                    ->numeric()
-                                    ->minValue(0),
-                                Forms\Components\TextInput::make('bathrooms')
-                                    ->required()
-                                    ->numeric()
-                                    ->minValue(0)
-                                    ->step(0.5),
+                                    ->options([
+                                        1 => '1 Story',
+                                        2 => '2 Stories',
+                                    ])
+                                    ->default(1),
+
                                 Forms\Components\TextInput::make('square_feet')
                                     ->numeric()
                                     ->minValue(0),

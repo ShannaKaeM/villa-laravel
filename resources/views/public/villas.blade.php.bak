@@ -1,0 +1,281 @@
+<x-public-layout>
+    <!-- Hero Section -->
+    <section class="relative bg-natural-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-natural-900 sm:text-5xl">Villa Capriani Listings</h1>
+                <p class="mt-4 text-xl text-natural-600">Explore our available units for rent or sale, each offering unique layouts and personalized touches.</p>
+            </div>
+        </div>
+    </section>
+            
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-12 gap-8">
+            <!-- Filters Sidebar -->
+            <div class="col-span-12 lg:col-span-3">
+                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-semibold text-xl">FILTERS</h3>
+                        <a href="{{ route('villas') }}" class="text-sm text-natural-600 hover:text-natural-900">clear filters</a>
+                    </div>
+                    <form id="villa-filters" class="space-y-8" method="GET">
+                        <!-- Listing Status -->
+                        <div class="space-y-3">
+                            <label class="font-medium text-natural-700">Listing Status</label>
+                            <div class="flex gap-4">
+                                <label class="flex items-center">
+                                    <input type="radio" name="status" value="rent" class="form-radio" {{ request('status') === 'rent' ? 'checked' : '' }}>
+                                    <span class="ml-2">For Rent</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="status" value="sale" class="form-radio" {{ request('status') === 'sale' ? 'checked' : '' }}>
+                                    <span class="ml-2">For Sale</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Floor Level -->
+                        <div class="space-y-3">
+                            <label class="font-medium text-natural-700">Floor Level</label>
+                            <div class="flex gap-4">
+                                @foreach(range(1, 4) as $floor)
+                                <label class="flex items-center">
+                                    <input type="radio" name="floor_level" value="{{ $floor }}" class="form-radio" {{ request('floor_level') == $floor ? 'checked' : '' }}>
+                                    <span class="ml-2">{{ $floor }}</span>
+                                </label>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!-- Stories -->
+                        <div class="space-y-3">
+                            <label class="font-medium text-natural-700">Stories</label>
+                            <div class="flex gap-4">
+                                @foreach(range(1, 2) as $story)
+                                <label class="flex items-center">
+                                    <input type="radio" name="stories" value="{{ $story }}" class="form-radio" {{ request('stories') == $story ? 'checked' : '' }}>
+                                    <span class="ml-2">{{ $story }}</span>
+                                </label>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!-- Bathrooms -->
+                        <div class="space-y-3">
+                            <label class="font-medium text-natural-700">Bathrooms</label>
+                            <div class="flex gap-4">
+                                @foreach(range(1, 3) as $bath)
+                                <label class="flex items-center">
+                                    <input type="radio" name="bathrooms" value="{{ $bath }}" class="form-radio" {{ request('bathrooms') == $bath ? 'checked' : '' }}>
+                                    <span class="ml-2">{{ $bath }}</span>
+                                </label>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!-- Bedrooms & Floorplans -->
+                        <div class="space-y-3">
+                            <label class="font-medium text-natural-700">Bedrooms & Floorplans</label>
+                            <div class="flex gap-4">
+                                @foreach(range(1, 3) as $bed)
+                                <label class="flex items-center">
+                                    <input type="radio" name="bedrooms" value="{{ $bed }}" class="form-radio" {{ request('bedrooms') == $bed ? 'checked' : '' }}>
+                                    <span class="ml-2">{{ $bed }}</span>
+                                </label>
+                                @endforeach
+                            </div>
+                        </div>
+
+                                <!-- Bedrooms Filter -->
+                                <div class="space-y-2">
+                                    <label class="font-medium text-sm">Bedrooms</label>
+                                    <select name="bedrooms" class="w-full rounded-md border-natural-300">
+                                        <option value="">Any</option>
+                                        <option value="1">1 Bedroom</option>
+                                        <option value="2">2 Bedrooms</option>
+                                        <option value="3">3 Bedrooms</option>
+                                    </select>
+                                </div>
+
+                                <!-- Floor Level Filter -->
+                                <div class="space-y-2">
+                                    <label class="font-medium text-sm">Floor Level</label>
+                                    <select name="floor" class="w-full rounded-md border-natural-300">
+                                        <option value="">Any</option>
+                                        <option value="1">1st Floor</option>
+                                        <option value="2">2nd Floor</option>
+                                        <option value="3">3rd Floor</option>
+                                        <option value="4">4th Floor</option>
+                                    </select>
+                                </div>
+
+                                <!-- Stories Filter -->
+                                <div class="space-y-2">
+                                    <label class="font-medium text-sm">Stories</label>
+                                    <select name="stories" class="w-full rounded-md border-natural-300">
+                                        <option value="">Any</option>
+                                        <option value="1">1 Story</option>
+                                        <option value="2">2 Stories</option>
+                                    </select>
+                                </div>
+
+                                <!-- View Type Filter -->
+                                <div class="space-y-2">
+                                    <label class="font-medium text-sm">View Type</label>
+                                    <select name="view_type" class="w-full rounded-md border-natural-300">
+                                        <option value="">Any</option>
+                                        <option value="ocean">Ocean View</option>
+                                        <option value="pool">Pool View</option>
+                                        <option value="garden">Garden View</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="w-full bg-natural-800 text-white rounded-md py-2 hover:bg-natural-700 transition-colors">
+                                    Apply Filters
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                                <option value="1">1st Floor</option>
+                                <option value="2">2nd Floor</option>
+                                <option value="3">3rd Floor</option>
+                                <option value="4">4th Floor</option>
+                            </select>
+                        </div>
+
+                        <!-- Status Filter -->
+                        <div class="mi-filter-group">
+                            <label class="mi-filter-title">Status</label>
+                            <select class="form-select w-full" name="status">
+                                <option value="">All</option>
+                                <option value="rent">For Rent</option>
+                                <option value="sale">For Sale</option>
+                            </select>
+                        </div>
+                    </form>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Villas Grid -->
+            <div class="col-span-12 lg:col-span-9">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @forelse($villas as $villa)
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
+                        @if($villa->featured_image)
+                        <div class="aspect-w-16 aspect-h-9">
+                            <img src="{{ $villa->featured_image }}" alt="{{ $villa->display_name }}" class="object-cover w-full h-full">
+                        </div>
+                        @endif
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-natural-900">{{ $villa->display_name }}</h3>
+                            <div class="mt-2 space-y-2">
+                                <p class="text-sm text-natural-600">Unit {{ $villa->unit_number }}</p>
+                                <div class="flex items-center space-x-4 text-sm text-natural-500">
+                                    <span>{{ $villa->bedrooms }} BR</span>
+                                    <span>{{ $villa->bathrooms }} Bath</span>
+                                    <span>Floor {{ $villa->floor_level }}</span>
+                                </div>
+                                @if($villa->is_for_rent)
+                                <p class="text-sm font-medium text-natural-900">Available for Rent</p>
+                                @endif
+                                @if($villa->is_for_sale)
+                                <p class="text-sm font-medium text-natural-900">For Sale: ${{ number_format($villa->sale_price) }}</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    @empty
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-natural-600">No villas found matching your criteria.</p>
+                    </div>
+                    @endforelse
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-8">
+                    {{ $villas->links() }}
+                </div>
+            </div>
+            <!-- Villas Grid -->
+            <div class="col-span-12 lg:col-span-9">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach($villas as $villa)
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                        <img src="{{ $villa->featured_image }}" alt="{{ $villa->display_name }}" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2">{{ $villa->display_name }}</h3>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="text-sm bg-natural-100 text-natural-600 px-2 py-1 rounded">Unit {{ $villa->unit_number }}</span>
+                                @if($villa->is_for_rent)
+                                    <span class="text-sm bg-blue-100 text-blue-600 px-2 py-1 rounded">For Rent</span>
+                                @endif
+                                @if($villa->is_for_sale)
+                                    <span class="text-sm bg-green-100 text-green-600 px-2 py-1 rounded">For Sale</span>
+                                @endif
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-natural-600 mb-4">
+                                <div>{{ $villa->bedrooms }} Bed</div>
+                                <div>{{ $villa->bathrooms }} Bath</div>
+                                <div>Floor {{ $villa->floor_level }}</div>
+                                <div>{{ $villa->stories }} {{ $villa->stories > 1 ? 'Stories' : 'Story' }}</div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <a href="{{ route('villas.show', $villa) }}" class="text-sm font-medium text-natural-600 hover:text-natural-900">Learn More</a>
+                                <button class="text-sm bg-natural-800 text-white px-4 py-2 rounded hover:bg-natural-700 transition-colors">Contact</button>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-8">
+                    {{ $villas->links() }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="mt-16">
+            <div class="bg-natural-50 border border-natural-200 rounded-lg p-6 text-sm text-natural-600">
+                <h3 class="font-semibold text-natural-900 mb-2">Disclaimer</h3>
+                <p>Villa Capriani HOA provides this listing service for convenience only. We do not guarantee the accuracy of individual listings, availability, pricing, property condition, or transactions between owners and guests/buyers. All interactions, agreements, and communications are solely between the involved parties.</p>
+            </div>
+        </div>
+    </div>
+</section>                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                </svg>
+                                {{ $villa->bedrooms }} BR
+                            </span>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-lg font-bold text-primary-600">
+                                @if($villa->for_sale)
+                                    ${{ number_format($villa->sale_price) }}
+                                @else
+                                    Contact for Pricing
+                                @endif
+                            </span>
+                        </div>
+                        <div class="mt-4 flex space-x-3">
+                            <a href="{{ route('villas.show', $villa) }}" class="mi-button-primary flex-1 text-center">View Details</a>
+                            @if($villa->is_for_rent)
+                                <a href="#" class="mi-button-secondary flex-1 text-center">Book Now</a>
+                            @else
+                                <button class="text-sm bg-natural-800 text-white px-4 py-2 rounded hover:bg-natural-700 transition-colors">Contact</button>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-8">
+                {{ $villas->links() }}
+            </div>
+        </div>
+    </div>
+</x-public-layout>

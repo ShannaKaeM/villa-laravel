@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 
 class Villa extends Model
 {
@@ -46,5 +47,22 @@ class Villa extends Model
         return $this->belongsToMany(Owner::class)
             ->withPivot(['is_primary_owner', 'ownership_percentage', 'ownership_start_date', 'ownership_end_date'])
             ->withTimestamps();
+    }
+
+    public function getFeaturedImageUrlAttribute(): ?string
+    {
+        return $this->featured_image ? Storage::url($this->featured_image) : null;
+    }
+
+    public function getGalleryImageUrlsAttribute(): array
+    {
+        return collect($this->gallery_images ?? [])
+            ->map(fn ($image) => Storage::url($image))
+            ->all();
+    }
+
+    public function getFloorplanImageUrlAttribute(): ?string
+    {
+        return $this->floorplan_image ? Storage::url($this->floorplan_image) : null;
     }
 }

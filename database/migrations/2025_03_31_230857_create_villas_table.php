@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('unit_number')->unique();
             $table->string('display_name');
             $table->text('description')->nullable();
-            $table->enum('floorplan_type', ['studio', '1br', '2br', '3br', 'penthouse']);
+            $table->enum('floorplan_type', ['1.1', '1.2', '2.1', '2.2', '2.3', '3.1', '3.2']);
             $table->enum('view_type', ['ocean', 'pool', 'garden', 'city']);
             $table->integer('floor_level');
             $table->integer('stories')->default(1);

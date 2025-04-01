@@ -24,56 +24,46 @@ class PublicController extends Controller
     {
         $query = Villa::query();
 
-        // Apply filters
-        if ($request->has('status')) {
+        // Apply status filter
+        if ($request->filled('status')) {
             if ($request->status === 'rent') {
-                $query->where('for_rent', true);
+                $query->where('is_for_rent', true);
             } elseif ($request->status === 'sale') {
-                $query->where('for_sale', true);
+                $query->where('is_for_sale', true);
             }
         }
 
-        if ($request->has('view_type')) {
-            $query->whereIn('view_type', $request->view_type);
+        // Apply single-choice filters
+        if ($request->filled('floor_level')) {
+            $query->where('floor_level', $request->floor_level);
         }
 
-        if ($request->has('bedrooms') && $request->bedrooms) {
+        if ($request->filled('stories')) {
+            $query->where('stories', $request->stories);
+        }
+
+        if ($request->filled('bathrooms')) {
+            $query->where('bathrooms', $request->bathrooms);
+        }
+
+        if ($request->filled('bedrooms')) {
             $query->where('bedrooms', $request->bedrooms);
+            
+            if ($request->filled('floorplan')) {
+                $query->where('floorplan_type', $request->floorplan);
+            }
         }
 
-        if ($request->has('floor') && $request->floor) {
-            $query->where('floor_level', $request->floor);
-        }
+        // Default sorting
+        $query->orderBy('is_featured', 'desc')
+              ->orderBy('unit_number', 'asc');
 
-        $villas = $query->paginate(12);
+        $villas = $query->paginate(12)->withQueryString();
+
         return view('public.villas', compact('villas'));
     }
 
-    public function renting(Request $request)
-    {
-        $query = Villa::query()->where('for_rent', true);
 
-        // Apply filters
-        if ($request->has('bedrooms')) {
-            $query->whereIn('bedrooms', $request->bedrooms);
-        }
-
-        if ($request->has('views')) {
-            $query->whereIn('view_type', $request->views);
-        }
-
-        if ($request->has('floors')) {
-            $query->whereIn('floor_level', $request->floors);
-        }
-
-        $villas = $query->paginate(12);
-        return view('public.renting.index', compact('villas'));
-    }
-
-    public function buying()
-    {
-        return view('public.buying');
-    }
 
     public function amenities()
     {

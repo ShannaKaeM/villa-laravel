@@ -25,10 +25,10 @@
                         <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
                             Home
                         </a>
-                        <a href="{{ route('renting') }}" class="nav-link {{ request()->routeIs('renting') ? 'active' : '' }}">
+                        <a href="{{ route('villas', ['status' => 'rent']) }}" class="nav-link {{ request()->input('status') === 'rent' ? 'active' : '' }}">
                             Renting
                         </a>
-                        <a href="{{ route('buying') }}" class="nav-link {{ request()->routeIs('buying') ? 'active' : '' }}">
+                        <a href="{{ route('villas', ['status' => 'sale']) }}" class="nav-link {{ request()->input('status') === 'sale' ? 'active' : '' }}">
                             Buying
                         </a>
                         <a href="{{ route('amenities') }}" class="nav-link {{ request()->routeIs('amenities') ? 'active' : '' }}">

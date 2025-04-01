@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 // Main Navigation Routes
 Route::get('/', [PublicController::class, 'home'])->name('home');
 Route::get('/villas', [PublicController::class, 'villas'])->name('villas');
-Route::get('/renting', [PublicController::class, 'renting'])->name('renting');
-Route::get('/buying', [PublicController::class, 'buying'])->name('buying');
+Route::get('/renting', function() { return redirect()->route('villas', ['status' => 'rent']); })->name('renting');
+Route::get('/buying', function() { return redirect()->route('villas', ['status' => 'sale']); })->name('buying');
 Route::get('/amenities', [PublicController::class, 'amenities'])->name('amenities');
 Route::get('/restaurant', [PublicController::class, 'restaurant'])->name('restaurant');
 Route::get('/calendar', [PublicController::class, 'calendar'])->name('calendar');

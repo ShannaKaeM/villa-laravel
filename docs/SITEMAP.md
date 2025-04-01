@@ -1,4 +1,4 @@
-# Villa Capriani Site Structure
+## Villa Capriani Site Structure
 
 ## Navigation Structure
 
@@ -70,6 +70,7 @@
 - Booking Interface
 
 ### About Section
+
 #### Committees
 - Structure Overview
 - Individual Committee Pages
@@ -120,6 +121,7 @@
 ## Technical Architecture
 
 ### Custom Post Types (CPTs)
+
 1. **Villa CPT**
    - Basic Info (Unit #, Name, Description)
    - Media (Photos, Floorplans)
