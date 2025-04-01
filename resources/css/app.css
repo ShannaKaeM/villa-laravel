@@ -98,6 +98,126 @@
     @apply text-lg font-semibold text-base-50 min-h-[3.5rem];
   }
 
+  /* ----------------------------------- */
+  /* MI Hero Base Styles */
+  /* ----------------------------------- */
+  .mi-hero-base {
+    @apply relative w-full bg-primary-900 overflow-hidden;
+  }
+
+  .mi-hero-background {
+    @apply absolute inset-0 w-full h-full;
+  }
+
+  .mi-hero-image {
+    @apply w-full h-full object-cover object-center;
+  }
+
+  .mi-hero-overlay {
+    @apply absolute inset-0 bg-black/50;
+  }
+
+  .mi-hero-content {
+    @apply absolute inset-0 flex items-center justify-center z-10;
+  }
+
+  .mi-hero-container {
+    @apply container mx-auto px-4;
+  }
+
+  .mi-hero-inner {
+    @apply max-w-3xl mx-auto text-center text-white;
+  }
+
+  /* Base Hero Typography */
+  .mi-hero-title {
+    @apply text-4xl sm:text-5xl md:text-6xl font-normal text-natural-50 mb-6 tracking-tight;
+  }
+
+  .mi-hero-subtitle {
+    @apply block text-2xl sm:text-3xl md:text-4xl mt-2 text-natural-100;
+  }
+
+  .mi-hero-description {
+    @apply text-xl sm:text-2xl text-natural-100 mb-12 font-light max-w-3xl mx-auto;
+  }
+
+  /* ----------------------------------- */
+  /* Hero Variations */
+  /* ----------------------------------- */
+
+  /* Home Hero - Full screen with nav offset */
+  .mi-home-hero {
+    @apply h-screen;
+  }
+
+  /* Page Hero - 75vh with nav offset and raised content */
+  .mi-page-hero {
+    @apply h-[75vh] -mt-20;
+  }
+
+  .mi-page-hero .mi-hero-content {
+    @apply -mt-12; /* Move content up slightly */
+  }
+
+  .mi-hero-buttons {
+    @apply flex flex-col sm:flex-row gap-6 justify-center;
+  }
+
+  .mi-hero-button-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 font-medium rounded-lg text-natural-50 bg-natural-400 hover:bg-natural-500 transition-all duration-300 border border-transparent uppercase;
+  }
+
+  /* Header Styles */
+  .mi-header {
+    @apply sticky top-0 w-full bg-white/60 backdrop-blur-lg shadow-sm transition-all duration-300;
+  }
+
+  .mi-header.scrolled {
+    @apply bg-white/80 shadow-md;
+  }
+
+  /* Navigation Styles */
+  .nav-link {
+    @apply inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900 border-b-2 border-transparent hover:border-gray-300;
+  }
+
+  .nav-link.active {
+    @apply border-primary-500 text-gray-900;
+  }
+
+  .nav-dropdown {
+    @apply absolute z-10 -ml-4 mt-3 w-screen max-w-md transform px-2 sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2;
+  }
+
+  .nav-dropdown-content {
+    @apply rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden;
+  }
+
+  .nav-dropdown-items {
+    @apply relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8;
+  }
+
+  .nav-dropdown-item {
+    @apply -m-3 p-3 flex items-start rounded-lg hover:bg-gray-50;
+  }
+
+  .nav-dropdown-item-icon {
+    @apply flex-shrink-0 h-6 w-6 text-primary-600;
+  }
+
+  .nav-dropdown-item-content {
+    @apply ml-4;
+  }
+
+  .nav-dropdown-item-title {
+    @apply text-base font-medium text-gray-900;
+  }
+
+  .nav-dropdown-item-description {
+    @apply mt-1 text-sm text-gray-500;
+  }
+
   .mi-hero-button-secondary {
     @apply inline-flex items-center justify-center px-8 py-3 font-medium rounded-lg text-natural-50 hover:text-natural-50 backdrop-blur-md bg-transparent hover:bg-white/10 transition-all duration-300 border border-natural-50/50 hover:border-natural-50/80 uppercase;
   }
