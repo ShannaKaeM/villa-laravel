@@ -1,11 +1,104 @@
-@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+@layer components {
+  /* Filter Section Styles */
+  .mi-filter-section {
+    @apply bg-natural-200 rounded-lg p-6 border border-base-100;
+  }
+
+  .mi-filter-group {
+    @apply space-y-3;
+  }
+
+  .mi-filter-title {
+    @apply text-natural-700 font-semibold;
+  }
+
+  .mi-filter-options {
+    @apply flex flex-wrap gap-3;
+  }
+
+  .mi-filter-label {
+    @apply inline-flex items-center;
+  }
+
+  .mi-filter-text {
+    @apply ml-2 text-natural-600;
+  }
+
+  /* Button Styles */
+  .mi-button-primary {
+    @apply bg-primary-600 text-white py-3 px-6 rounded-lg font-semibold
+           hover:bg-primary-700 transform hover:-translate-y-0.5 transition-all
+           hover:shadow-md;
+  }
+
+  .mi-button-secondary {
+    @apply bg-secondary-400 text-white py-3 px-6 rounded-lg font-semibold
+           hover:bg-secondary-500 transform hover:-translate-y-0.5 transition-all
+           hover:shadow-md;
+  }
+
+  .mi-button-natural {
+    @apply bg-natural-200 text-base-800 py-2 px-4 rounded-md font-semibold
+           hover:bg-natural-200 transform hover:-translate-y-0.5 transition-all
+           hover:shadow-md;
+  }
+
+  .mi-button-outline-natural {
+    @apply border border-natural-100 text-natural-100 py-2 px-4 rounded-md font-semibold
+           hover:bg-white/10 hover:text-natural-50 transform hover:-translate-y-0.5 transition-all
+           hover:shadow-md;
+  }
+
+  /* Custom radio button styles */
+  .mi-form-radio {
+    @apply appearance-none p-0 w-5 h-5 border rounded-full bg-white border-natural-300;
+  }
+
+  .mi-form-radio:checked {
+    @apply bg-primary-500 border-primary-500;
+  }
+
+  .mi-form-radio:focus {
+    @apply outline-2 outline-primary-500 outline-offset-2;
+  }
+
+  .mi-form-radio:checked::after {
+    content: '';
+    @apply block w-2 h-2 rounded-full bg-white m-[5px];
+  }
+
+  /* Card styles */
+  .mi-card {
+    @apply bg-base-800 rounded-lg shadow-sm border border-base-700 overflow-hidden hover:shadow-xl transition-shadow relative;
+  }
+
+  .mi-card-content {
+    @apply p-4 flex flex-col relative;
+  }
+
+  .mi-card-image-container {
+    @apply relative;
+  }
+
+  .mi-card-image-overlay {
+    @apply absolute inset-0 bg-black/20 z-10;
+  }
+
+  .mi-card-image {
+    @apply w-full h-48 object-cover;
+  }
+
+  .mi-card-title {
+    @apply text-lg font-semibold text-base-50 min-h-[3.5rem];
+  }
+
+  .mi-hero-button-secondary {
+    @apply inline-flex items-center justify-center px-8 py-3 font-medium rounded-lg text-natural-50 hover:text-natural-50 backdrop-blur-md bg-transparent hover:bg-white/10 transition-all duration-300 border border-natural-50/50 hover:border-natural-50/80 uppercase;
+  }
 }
