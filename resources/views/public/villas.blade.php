@@ -3,7 +3,7 @@
     <!-- Hero Section -->
     <section class="relative h-[500px] flex items-center justify-center">
         <div class="absolute inset-0">
-            <img src="{{ $villas->first()?->featured_image_url ?? asset('images/Villas /Bedroom/Shanna_Middleton_A_modern,_minimalist_bedroom_with_a_serene_ocean_v_fcac289b-b21b-42a9-8cb5-fe86117d0786.png') }}" alt="Villa Capriani" class="w-full h-full object-cover">
+            <img src="{{ $villas->first()?->featured_image_url ?? asset('images/home/hero.png') }}" alt="Villa Capriani" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black/40"></div>
         </div>
         <div class="relative text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -181,7 +181,7 @@
                     @foreach($villas as $villa)
                     <div class="mi-bento-card bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-all duration-150 hover:translate-y-[-2px]">
                         <div class="aspect-w-16 aspect-h-9">
-                            <img src="{{ $villa->featured_image_url ?? asset('images/Villas /Bedroom/Shanna_Middleton_A_modern,_minimalist_bedroom_with_a_serene_ocean_v_fcac289b-b21b-42a9-8cb5-fe86117d0786.png') }}" alt="{{ $villa->display_name }}" class="w-full h-48 object-cover">
+                            <img src="{{ $villa->featured_image_url ?? asset('images/home/hero.png') }}" alt="{{ $villa->display_name }}" class="w-full h-48 object-cover">
                         </div>
                         <div class="p-4">
                             <h3 class="font-semibold text-lg mb-2">{{ $villa->display_name }}</h3>

@@ -51,18 +51,24 @@ class Villa extends Model
 
     public function getFeaturedImageUrlAttribute(): ?string
     {
-        return $this->featured_image ? Storage::url($this->featured_image) : null;
+        if (!$this->featured_image) {
+            return asset('images/Villas/Featured Image/default.png');
+        }
+        return Storage::url('villas/featured/' . $this->featured_image);
     }
 
     public function getGalleryImageUrlsAttribute(): array
     {
         return collect($this->gallery_images ?? [])
-            ->map(fn ($image) => Storage::url($image))
+            ->map(fn ($image) => Storage::url('villas/gallery/' . $image))
             ->all();
     }
 
     public function getFloorplanImageUrlAttribute(): ?string
     {
-        return $this->floorplan_image ? Storage::url($this->floorplan_image) : null;
+        if (!$this->floorplan_image) {
+            return null;
+        }
+        return Storage::url('villas/floorplans/' . $this->floorplan_image);
     }
 }

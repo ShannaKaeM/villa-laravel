@@ -14,36 +14,60 @@
     @apply py-16;
   }
 
-  /* Hero Section */
-  .mi-hero {
-    @apply relative h-[500px] flex items-center justify-center;
+  /* Hero System */
+  .mi-hero-base {
+    @apply relative w-full bg-primary-900 overflow-hidden -mt-24;
+  }
+
+  /* Hero Variations */
+  .mi-hero-home {
+    @apply h-screen;
+  }
+
+  .mi-hero-page {
+    @apply h-[75vh];
+  }
+
+  /* Hero Components */
+  .mi-hero-background {
+    @apply absolute inset-0 w-full h-full;
+  }
+
+  .mi-hero-image {
+    @apply w-full h-full object-cover object-center;
   }
 
   .mi-hero-overlay {
-    @apply absolute inset-0 bg-black/40;
+    @apply absolute inset-0 bg-black/50;
   }
 
   .mi-hero-content {
-    @apply relative text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply absolute inset-0 flex items-center justify-center z-10;
+  }
+
+  .mi-hero-container {
+    @apply container mx-auto px-4;
+  }
+
+  .mi-hero-inner {
+    @apply max-w-3xl mx-auto text-center text-white;
   }
 
   /* Card Components */
   .mi-card {
-    @apply bg-white rounded-lg shadow-sm overflow-hidden
-           hover:shadow-md transition-all duration-150
-           hover:-translate-y-1;
-  }
-
-  .mi-card-image {
-    @apply aspect-w-16 aspect-h-9 w-full h-48 object-cover;
+    @apply bg-base-800 rounded-lg shadow-sm border border-base-700 overflow-hidden hover:shadow-xl transition-shadow relative;
   }
 
   .mi-card-content {
-    @apply p-6;
+    @apply p-4 flex flex-col relative;
+  }
+
+  .mi-card-image {
+    @apply w-full h-48 object-cover;
   }
 
   .mi-card-title {
-    @apply font-semibold text-lg mb-2;
+    @apply text-lg font-semibold text-base-50 min-h-[3.5rem];
   }
 
   .mi-card-subtitle {
@@ -134,60 +158,13 @@
     @apply block w-2 h-2 rounded-full bg-white m-[5px];
   }
 
-  /* Card styles */
-  .mi-card {
-    @apply bg-base-800 rounded-lg shadow-sm border border-base-700 overflow-hidden hover:shadow-xl transition-shadow relative;
-  }
-
-  .mi-card-content {
-    @apply p-4 flex flex-col relative;
-  }
-
+  /* Card Components */
   .mi-card-image-container {
     @apply relative;
   }
 
   .mi-card-image-overlay {
     @apply absolute inset-0 bg-black/20 z-10;
-  }
-
-  .mi-card-image {
-    @apply w-full h-48 object-cover;
-  }
-
-  .mi-card-title {
-    @apply text-lg font-semibold text-base-50 min-h-[3.5rem];
-  }
-
-  /* ----------------------------------- */
-  /* MI Hero Base Styles */
-  /* ----------------------------------- */
-  .mi-hero-base {
-    @apply relative w-full bg-primary-900 overflow-hidden;
-  }
-
-  .mi-hero-background {
-    @apply absolute inset-0 w-full h-full;
-  }
-
-  .mi-hero-image {
-    @apply w-full h-full object-cover object-center;
-  }
-
-  .mi-hero-overlay {
-    @apply absolute inset-0 bg-black/50;
-  }
-
-  .mi-hero-content {
-    @apply absolute inset-0 flex items-center justify-center z-10;
-  }
-
-  .mi-hero-container {
-    @apply container mx-auto px-4;
-  }
-
-  .mi-hero-inner {
-    @apply max-w-3xl mx-auto text-center text-white;
   }
 
   /* Base Hero Typography */
