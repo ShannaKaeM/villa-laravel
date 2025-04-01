@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Owner extends Model
+class Owner extends Authenticatable
 {
     use HasFactory;
 
@@ -16,6 +17,9 @@ class Owner extends Model
         'email',
         'phone',
         'company_name',
+        'avatar',
+        'role',
+        'unit_number',
         'address_line1',
         'address_line2',
         'city',
@@ -23,6 +27,7 @@ class Owner extends Model
         'postal_code',
         'country',
         'notes',
+        'password',
     ];
 
     public function getFullNameAttribute(): string
@@ -34,6 +39,13 @@ class Owner extends Model
     {
         return $this->belongsToMany(Villa::class)
             ->withPivot(['is_primary_owner', 'ownership_percentage', 'ownership_start_date', 'ownership_end_date'])
+            ->withTimestamps();
+    }
+    
+    public function committees(): BelongsToMany
+    {
+        return $this->belongsToMany(Committee::class, 'committee_owner')
+            ->withPivot(['role', 'expertise', 'term_start', 'term_end', 'is_active'])
             ->withTimestamps();
     }
 }

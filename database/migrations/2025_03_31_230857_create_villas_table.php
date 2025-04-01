@@ -28,6 +28,12 @@ return new class extends Migration
             $table->boolean('is_for_sale')->default(false);
             $table->decimal('rental_rate', 10, 2)->nullable();
             $table->decimal('sale_price', 12, 2)->nullable();
+            
+            // Image fields
+            $table->string('featured_image')->nullable();
+            $table->json('gallery_images')->nullable();
+            $table->string('floorplan_image')->nullable();
+            
             $table->timestamps();
         });
     }

@@ -36,6 +36,20 @@ class VillaResource extends Resource
                                     ->placeholder('e.g., Oceanfront Villa A101'),
                                 Forms\Components\RichEditor::make('description')
                                     ->columnSpanFull(),
+                                Forms\Components\FileUpload::make('featured_image')
+                                    ->image()
+                                    ->directory('villas/featured')
+                                    ->columnSpanFull(),
+                                Forms\Components\FileUpload::make('gallery_images')
+                                    ->multiple()
+                                    ->image()
+                                    ->directory('villas/gallery')
+                                    ->maxFiles(10)
+                                    ->columnSpanFull(),
+                                Forms\Components\FileUpload::make('floorplan_image')
+                                    ->image()
+                                    ->directory('villas/floorplans')
+                                    ->columnSpanFull(),
                             ])->columns(2),
                             
                         Forms\Components\Tabs\Tab::make('Details')
@@ -111,6 +125,9 @@ class VillaResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('featured_image')
+                    ->circular()
+                    ->defaultImageUrl(url('/images/Featured Image/Shanna_Middleton_A_balcony_with_a_view_of_the_beach_and_ocean_durin_41c2b2c8-4abf-4dab-b206-fa36e0dce679.png')),
                 Tables\Columns\TextColumn::make('unit_number')
                     ->searchable()
                     ->sortable(),
@@ -135,11 +152,11 @@ class VillaResource extends Resource
                 Tables\Columns\TextColumn::make('rental_rate')
                     ->money('USD')
                     ->sortable()
-                    ->visible(fn ($record) => $record->is_for_rent),
+                    ->visible(fn ($record) => $record?->is_for_rent),
                 Tables\Columns\TextColumn::make('sale_price')
                     ->money('USD')
                     ->sortable()
-                    ->visible(fn ($record) => $record->is_for_sale),
+                    ->visible(fn ($record) => $record?->is_for_sale),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('floorplan_type')

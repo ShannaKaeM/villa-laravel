@@ -26,6 +26,9 @@ class Villa extends Model
         'is_for_sale',
         'rental_rate',
         'sale_price',
+        'featured_image',
+        'gallery_images',
+        'floorplan_image',
     ];
 
     protected $casts = [
@@ -35,6 +38,7 @@ class Villa extends Model
         'bathrooms' => 'decimal:1',
         'rental_rate' => 'decimal:2',
         'sale_price' => 'decimal:2',
+        'gallery_images' => 'array',
     ];
 
     public function owners(): BelongsToMany

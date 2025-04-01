@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,14 +13,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Admin User',
+                'email' => 'admin@example.com',
+                'email_verified_at' => now(),
+                'password' => bcrypt('password'),
+                'remember_token' => Str::random(10),
+            ]
+        );
 
         $this->call([
             VillaSeeder::class,
-            OwnerSeeder::class,
+            CommitteeSeeder::class,
+            BoardAndCommitteeMemberSeeder::class,
         ]);
     }
 }
